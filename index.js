@@ -1,5 +1,5 @@
-const width = 150
-const height = 100
+const width = 100
+const height = 75
 
 const rand = () => Math.random() >= 0.85
 
