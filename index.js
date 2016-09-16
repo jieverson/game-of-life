@@ -1,7 +1,18 @@
-const width = 100
-const height = 75
+const params = 
+    window.location.search
+        .replace('?', '')
+        .split('&')
+        .map(x => x.split('='))
+        .reduce((t,x)=>{
+            t[x[0]] = x[1]
+            return t
+        }, {})
 
-const rand = () => Math.random() >= 0.85
+const width = params.w ? parseInt(params.w) : 100
+const height = params.h ? parseInt(params.h) : 75
+const active_probability = params.r ? parseFloat(params.r) : 0.15
+
+const rand = () => Math.random() <= active_probability
 
 for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
