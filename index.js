@@ -36,9 +36,7 @@ const val = cell => cell.classList.contains('active')
 
 function update() {
     let new_states = []
-    
-    children = document.body.querySelectorAll('div')
-    
+        
     for (let x = 0; x < width; x++) {
         for (let y = 0; y < height; y++) {
             let i = pos(x,y)
