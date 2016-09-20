@@ -11,6 +11,7 @@ const params =
 const width = params.w ? parseInt(params.w) : 100
 const height = params.h ? parseInt(params.h) : 75
 const active_probability = params.r ? parseFloat(params.r) : 0.15
+const path = params.p || ''
 
 const rand = () => Math.random() <= active_probability
 
@@ -18,7 +19,7 @@ for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
         let cell = document.createElement('div')
         cell.classList.add('cell')
-        cell.classList.add(rand() ? 'active' : 'inactive')
+        cell.classList.add(!path && rand() ? 'active' : 'inactive')
         cell.style.width = window.innerWidth / width
         cell.style.height = window.innerHeight / height
         document.body.appendChild(cell)
@@ -33,6 +34,11 @@ const set = (x, y) => {
     get(x, y).classList.add('active')
 } 
 const val = cell => cell.classList.contains('active')
+
+path
+    .split('.')
+    .map(x => x.split(','))
+    .forEach(x=>set(parseInt(x[0]),parseInt(x[1])))
 
 function update() {
     let new_states = []
