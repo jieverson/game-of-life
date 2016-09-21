@@ -11,7 +11,7 @@ const params =
 const width = params.w ? parseInt(params.w) : 100
 const height = params.h ? parseInt(params.h) : 75
 const active_probability = params.r ? parseFloat(params.r) : 0.15
-const path = params.p || ''
+const path = params.p
 
 const rand = () => Math.random() <= active_probability
 
@@ -35,10 +35,12 @@ const set = (x, y) => {
 } 
 const val = cell => cell.classList.contains('active')
 
-path
+if(path){
+    path
     .split('.')
     .map(x => x.split(','))
     .forEach(x=>set(parseInt(x[0]),parseInt(x[1])))
+}
 
 function update() {
     let new_states = []
